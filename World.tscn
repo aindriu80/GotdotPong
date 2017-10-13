@@ -6,7 +6,6 @@
 [ext_resource path="res://Pong/resources/img/ball.png" type="Texture" id=4]
 [ext_resource path="res://Pong/resources/img/separator.png" type="Texture" id=5]
 
-
 [node name="World" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -27,28 +26,24 @@ bbcode/bbcode = ""
 visible_characters = -1
 percent_visible = 1.0
 
-[node name="LeftPlayer" type="Sprite" parent="."]
+[node name="leftPlayer" type="Sprite" parent="."]
 
-transform/pos = Vector2( 48.14, 262.67 )
-transform/scale = Vector2( 3, 3 )
+transform/pos = Vector2( 40, 200 )
 texture = ExtResource( 2 )
 
-[node name="RightPlayer" type="Sprite" parent="."]
+[node name="rightPlayer" type="Sprite" parent="."]
 
-transform/pos = Vector2( 981.772, 261 )
-transform/scale = Vector2( 3, 3 )
+transform/pos = Vector2( 600, 200 )
 texture = ExtResource( 3 )
 
-[node name="Ball" type="Sprite" parent="."]
+[node name="ball" type="Sprite" parent="."]
 
-transform/pos = Vector2( 519.131, 250.979 )
-transform/scale = Vector2( 3, 3 )
+transform/pos = Vector2( 320, 200 )
 texture = ExtResource( 4 )
 
-[node name="Seperator" type="Sprite" parent="."]
+[node name="seperator" type="Sprite" parent="."]
 
-transform/pos = Vector2( 512.451, 264.34 )
-transform/scale = Vector2( 2, 2 )
+transform/pos = Vector2( 320, 200 )
 texture = ExtResource( 5 )
 
 
