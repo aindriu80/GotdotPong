@@ -9,6 +9,8 @@ var screenSize
 var padSize
 var ballDirection = Vector2(1.0,0.0)
 var ballSpeed = INITBALLSPEED
+var leftScore = 0
+var rightScore = 0
 
 func _ready():		
 	screenSize = get_viewport_rect().size
@@ -37,14 +39,32 @@ func _process(delta):
 		leftPlayerPosition.y += PLAYERSPEED * delta
 		
 	ballPosition += ballDirection * ballSpeed * delta
-	if((ballPosition.y <0 and ballDirection < 0) or (ballPosition.y > screenSize.y and ballDirection.y >0)):
+	if((ballPosition.y <0 and ballDirection.y < 0) or (ballPosition.y > screenSize.y and ballDirection.y >0)):
 		ballDirection.y = -ballDirection.y
 	if(leftColider.has_point(ballPosition) or rightColider.has_point(ballPosition)):
 		ballDirection.x = -ballDirection.x
-		ballSpeed *= 1.4
-		
+		ballDirection.y = randf()*2-1
+		ballDirection = ballDirection.normalized()
+		if(ballSpeed<300):
+			ballSpeed *= 1.4
+	
+	if(ballPosition.x < 0):
+		ballPosition = screenSize * 0.5
+		ballSpeed = INITBALLSPEED
+		ballDirection.x = -ballDirection.x
+		rightScore += 1
+	if(ballPosition.x > screenSize.x):
+		ballPosition = screenSize * 0.5
+		ballSpeed = INITBALLSPEED
+		ballDirection.x = -ballDirection.x
+		leftScore+= 1
 	
 	#Update the position of our players
 	get_node("rightPlayer").set_pos(rightPlayerPosition)
 	get_node("leftPlayer").set_pos(leftPlayerPosition)
 	get_node("ball").set_pos(ballPosition)
+	
+	#update the score of the players
+	get_node("leftScore").set_text(str(leftScore))
+	get_node("rightScore").set_text(str(rightScore))
+	
